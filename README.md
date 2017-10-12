@@ -3,7 +3,7 @@
 Use to run Mybatis sql scripts without installing Mybatis on the environment.
 
 
-## Create Docker image#
+## Create Docker image
 To create the docker image use
 
 $ docker build -t mybatis-migrations-docker:latest .
@@ -15,7 +15,7 @@ Specify build arguments:
 
 $ docker build -t mybatis-migrations-docker:latest --build-arg HOSTNAME=adop.mydomain.com --build-arg USERNAME=nexus-viewer --build-arg PASSWORD=ViWerPass . 
 
-## Run Docker image#
+## Run Docker image
 To run the docker image use the docker .env file with the following variables.
 - DB_TYPE=Oracle The Database Type (Oracle, MySql, MSSql) Now only Oracle works
 - DB_HOST=127.0.0.1 The database Host address
@@ -40,44 +40,24 @@ mybatis-migrations-docker:latest name and version of the image
 $ docker run --env-file .env --rm -v /tmp/migration/scripts:/migration/scripts --name=mybatis-migrations-docker mybatis-migrations-docker:latest status
 
 
-## Bootstrap a database#
+## Bootstrap a database
 This is used to setup the database schema from scratsh.
 It requires a bootstrap.sql script.
 
 $ docker run --env-file .env --rm -v /tmp/migration/scripts:/migration/scripts --name=mybatis-migrations-docker mybatis-migrations-docker:latest bootstrap
 
 
-## Upgrade a database#
+## Upgrade a database
 This is used to upgrate the database schema.
 It requires update scripts in the scripts folder.
 
-Default required file is the create changelog script like: '20170901000000_create_changelog.sql'
+Default required file is the create changelog script like: '20170106000000_create_changelog.sql'
 
 $ docker run --env-file .env --rm -v /tmp/migration/scripts:/migration/scripts --name=mybatis-migrations-docker mybatis-migrations-docker:latest up
 
 
-## Downgrade a database#
+## Downgrade a database
 This is used to downgrade the database schema.
 It requires downgrade scripts in the scripts folder.
 
 $ docker run --env-file .env --rm -v /tmp/migration/scripts:/migration/scripts --name=mybatis-migrations-docker mybatis-migrations-docker:latest down
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
