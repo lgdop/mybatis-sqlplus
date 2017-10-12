@@ -8,6 +8,7 @@ RUN apk add --update bash && rm -rf /var/cache/apk/*
 # Making MyBatis version an argument (in case a snapshot version needs to be built)
 # --------------------
 ARG VERSION="3.2.1"
+ARG PROTOCOL="https"
 ARG USERNAME="##USE_ARGUMENTS##"
 ARG PASSWORD="##USE_ARGUMENTS##"
 ARG HOSTNAME="##USE_ARGUMENTS##"
@@ -38,7 +39,7 @@ RUN mkdir -p /migration/drivers && \
 
 # Add oracle jdbc driver
 # --------------------
-ADD http://"$USERNAME":"$PASSWORD"@"$HOSTNAME"/nexus/service/local/repositories/thirdparty/content/com/oracle/ojdbc7/12.0.0.1/ojdbc7-12.0.0.1.jar /migration/drivers
+ADD "$PROTOCOL"://"$USERNAME":"$PASSWORD"@"$HOSTNAME"/nexus/service/local/repositories/thirdparty/content/com/oracle/ojdbc7/12.0.0.1/ojdbc7-12.0.0.1.jar /migration/drivers
 
 
 # Add script that builds migration environment file and launches the binary

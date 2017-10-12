@@ -9,6 +9,7 @@ To create the docker image use
 $ docker build -t mybatis-migrations-docker:latest .
 
 Specify build arguments:
+- PROTOCOL Protocol http(s) to access your Nexus instance
 - HOSTNAME Hostname of the website where Nexus is hosted
 - USERNAME User for Nexus http_auth
 - PASSWORD Password for Nexus user
