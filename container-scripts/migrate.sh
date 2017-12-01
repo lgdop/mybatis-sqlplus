@@ -46,7 +46,7 @@ CONF
 
 #- Check / Wait for Database connection
 #--------------------------------------
-DB_CONNECTION_OK=false
+DB_CONNECTION_OK=true
 TRIES=0
 
 # echo "- Check / Wait for Database connection (10 tries)"
@@ -72,7 +72,7 @@ TRIES=0
 #     sleep 2
 # done
 
-# echo 
+# echo
 
 
 #- Create mybatis properties file
