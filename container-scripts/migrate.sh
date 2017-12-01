@@ -10,10 +10,6 @@ echo "DB_PORT		    : $DB_PORT"
 echo "DB_NAME           : $DB_NAME"
 echo "DB_USER           : $DB_USER"
 
-echo "SCHEMA_NAME		: $SCHEMA_NAME"
-echo "SCHEMA_PASS		: $SCHEMA_PASS"
-
-
 
 if [ "$DB_TYPE" == "Oracle" ] ; then
 	echo "> Oracle Databse"
@@ -41,12 +37,9 @@ script_char_set=UTF-8
 send_full_script=false
 delimiter=;
 full_line_delimiter=false
-auto_commit=false
-changelog=$SCHEMA_NAME.changelog
-
-schema_name=$SCHEMA_NAME
-schema_pass=$SCHEMA_PASS
-
+auto_commit=true
+changelog=CHANGELOG
+ignore_warnings=true
 
 CONF
 
@@ -56,30 +49,30 @@ CONF
 DB_CONNECTION_OK=false
 TRIES=0
 
-echo "- Check / Wait for Database connection (10 tries)"
-echo "   > Waiting for database connection"
+# echo "- Check / Wait for Database connection (10 tries)"
+# echo "   > Waiting for database connection"
 
-while ! $DB_CONNECTION_OK; do
-    echo "    Try: $TRIES"
+# while ! $DB_CONNECTION_OK; do
+#     echo "    Try: $TRIES"
 
-    nc -z $DB_HOST $DB_PORT </dev/null
-    if [ "$?" -eq "0" ]; then
-        echo "  Database connection Ok"
-        DB_CONNECTION_OK=true
-        break
-    fi
+#     nc -z $DB_HOST $DB_PORT </dev/null
+#     if [ "$?" -eq "0" ]; then
+#         echo "  Database connection Ok"
+#         DB_CONNECTION_OK=true
+#         break
+#     fi
 
-    if [ $TRIES -gt 9 ]; then
-       echo "Timeout"
-       exit 1
-    fi
+#     if [ $TRIES -gt 9 ]; then
+#        echo "Timeout"
+#        exit 1
+#     fi
 
-    TRIES=$(( $TRIES + 1))
+#     TRIES=$(( $TRIES + 1))
 
-    sleep 2
-done
+#     sleep 2
+# done
 
-echo 
+# echo 
 
 
 #- Create mybatis properties file
