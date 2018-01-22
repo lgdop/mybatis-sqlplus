@@ -10,6 +10,13 @@ echo "DB_PORT		    : $DB_PORT"
 echo "DB_NAME           : $DB_NAME"
 echo "DB_USER           : $DB_USER"
 
+CHANGELOG_TABLE="changelog"
+if [[ ! -z "$MODULE_NAME" ]] ; then
+    CHANGELOG_TABLE="$MODULE_NAME.changelog"
+
+    echo "MODULE_NAME           : $MODULE_NAME"
+    echo "CHANGELOG_TABLE       : $CHANGELOG_TABLE"
+fi
 
 if [ "$DB_TYPE" == "Oracle" ] ; then
 	echo "> Oracle Databse"
@@ -38,8 +45,10 @@ send_full_script=false
 delimiter=;
 full_line_delimiter=false
 auto_commit=true
-changelog=CHANGELOG
+changelog=$CHANGELOG_TABLE
 ignore_warnings=true
+
+module_name=$MODULE_NAME
 
 CONF
 

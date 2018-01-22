@@ -26,7 +26,7 @@ RUN yum -y install net-utils ldap-utils htop telnet nc \
     openssl \
     python-pip \
     libxslt && \
-    yum clean all 
+    yum clean all
 
 # Install Java
 RUN wget -q --no-check-certificate --directory-prefix=/tmp \
@@ -40,7 +40,7 @@ RUN wget -q --no-check-certificate --directory-prefix=/tmp \
 # Adding (downloading) the archive
 # --------------------
 # ADD https://github.com/mybatis/migrations/releases/download/mybatis-migrations-"$VERSION"/mybatis-migrations-"$VERSION".zip /tmp/mybatis-migrations-"$VERSION".zip
-ADD https://oss.sonatype.org/content/repositories/snapshots/org/mybatis/mybatis-migrations/3.3.2-SNAPSHOT/mybatis-migrations-3.3.2-20171027.005010-14-bundle.zip /tmp/mybatis-migrations-"$VERSION".zip
+ADD https://oss.sonatype.org/content/repositories/snapshots/org/mybatis/mybatis-migrations/3.3.2-SNAPSHOT/mybatis-migrations-3.3.2-20180118.183255-24-bundle.zip /tmp/mybatis-migrations-"$VERSION".zip
 
 
 # Will store the binaries in "opt" for optional software

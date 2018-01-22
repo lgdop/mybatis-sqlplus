@@ -24,9 +24,7 @@ To run the docker image use the docker .env file with the following variables.
 - DB_NAME=locdb The database Name (or SID)
 - DB_USER=system The database system user (or other user with the right permissions to execute the scripts)
 - DB_PASSWORD=oracle The Password of the DB user
-- SCHEMA_NAME=FOO Name of the schema to use, in scripts available as ${schema_name}
-- SCHEMA_PASS=fooTest Password of the schema (used for creation), in scripts available as ${schema_pass}
-    
+- MODULE_NAME=FOO Name of a component for which a CHANGELOG table will be created (this is used when you use one schema and want to have different CHANGELOGs per application/module). In SQL scripts is available as ${schema_name} variable
 Also a volume with de SQL scripts must be mount to the mountpoint /migration/scripts in the container
 
 docker run --env-file .env --rm -v <local folder>:/migration/scripts --name=mybatis-migrations-docker mybatis-migrations-docker:latest <myBatis cmd>
