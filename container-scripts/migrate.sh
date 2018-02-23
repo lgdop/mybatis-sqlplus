@@ -10,9 +10,9 @@ echo "DB_PORT		    : $DB_PORT"
 echo "DB_NAME           : $DB_NAME"
 echo "DB_USER           : $DB_USER"
 
-CHANGELOG_TABLE="changelog"
+CHANGELOG_TABLE="CHANGELOG"
 if [[ ! -z "$MODULE_NAME" ]] ; then
-    CHANGELOG_TABLE="$MODULE_NAME.changelog"
+    CHANGELOG_TABLE="CHANGELOG_$MODULE_NAME"
 
     echo "MODULE_NAME           : $MODULE_NAME"
     echo "CHANGELOG_TABLE       : $CHANGELOG_TABLE"

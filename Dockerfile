@@ -3,9 +3,8 @@ FROM centos:latest
 MAINTAINER Ilia Shakitko <ilia.shakitko@accenture.com>
 
 # Java Env Variables
-ENV JAVA_VERSION=1.8.0_152
-ENV JAVA_TARBALL=server-jre-8u152-linux-x64.tar.gz
-ENV JAVA_HOME=/opt/java/jdk${JAVA_VERSION}
+ENV JAVA_VERSION=1.6.0
+ENV JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.41.x86_64/jre
 
 # Making MyBatis version an argument (in case a snapshot version needs to be built)
 # --------------------
@@ -25,17 +24,9 @@ RUN yum -y install net-utils ldap-utils htop telnet nc \
     openldap-clients \
     openssl \
     python-pip \
-    libxslt && \
+    libxslt \
+    java-1.6.0-openjdk && \
     yum clean all
-
-# Install Java
-RUN wget -q --no-check-certificate --directory-prefix=/tmp \
-         --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-            http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/${JAVA_TARBALL} && \
-          mkdir -p /opt/java && \
-              tar -xzf /tmp/${JAVA_TARBALL} -C /opt/java/ && \
-            alternatives --install /usr/bin/java java /opt/java/jdk${JAVA_VERSION}/bin/java 100 && \
-                rm -rf /tmp/* && rm -rf /var/log/*
 
 # Adding (downloading) the archive
 # --------------------
@@ -64,7 +55,8 @@ RUN mkdir -p /migration/drivers && \
 
 # Add oracle jdbc driver
 # --------------------
-ADD "$PROTOCOL"://"$USERNAME":"$PASSWORD"@"$HOSTNAME"/nexus/service/local/repositories/thirdparty/content/com/oracle/ojdbc7/12.1.0.1/ojdbc7-12.1.0.1.jar /migration/drivers/ojdbc7.jar
+# ADD "$PROTOCOL"://"$USERNAME":"$PASSWORD"@"$HOSTNAME"/nexus/service/local/repositories/thirdparty/content/com/oracle/ojdbc7/12.1.0.1/ojdbc7-12.1.0.1.jar /migration/drivers/ojdbc7.jar
+ADD "$PROTOCOL"://"$USERNAME":"$PASSWORD"@"$HOSTNAME"/nexus/service/local/repositories/thirdparty/content/com/oracle/ojdbc14/10.2.0.5/ojdbc14-10.2.0.5.jar /migration/drivers/ojdbc14.jar
 
 
 # Add script that builds migration environment file and launches the binary
