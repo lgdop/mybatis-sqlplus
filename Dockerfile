@@ -40,8 +40,9 @@ COPY jdbc-10.2.0.5.0-linux-x64.zip /
 RUN unzip basic-10.2.0.5.0-linux-x64.zip && unzip sqlplus-10.2.0.5.0-linux-x64.zip && unzip sdk-10.2.0.5.0-linux-x64.zip && unzip jdbc-10.2.0.5.0-linux-x64.zip
 
 ENV LD_LIBRARY_PATH /instantclient_10_2
-
-RUN export PATH=/instantclient_10_2:$PATH
+ENV PATH "/instantclient_10_2:${PATH}"
+ENV ORACLE_HOME /instantclient_10_2
+ENV SQLPATH /instantclient_10_2
 
 # Adding (downloading) the archive
 # --------------------
