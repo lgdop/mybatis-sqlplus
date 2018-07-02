@@ -25,8 +25,23 @@ RUN yum -y install net-utils ldap-utils htop telnet nc \
     openssl \
     python-pip \
     libxslt \
-    java-1.6.0-openjdk && \
+    java-1.6.0-openjdk \ 
+    libaio1 \
+    rlwrap && \
     yum clean all
+
+#Adding the sqlplus dependencies
+
+COPY basic-10.2.0.5.0-linux-x64.zip /
+COPY sqlplus-10.2.0.5.0-linux-x64.zip / 
+COPY sdk-10.2.0.5.0-linux-x64.zip /
+COPY jdbc-10.2.0.5.0-linux-x64.zip /
+
+RUN unzip basic-10.2.0.5.0-linux-x64.zip && unzip sqlplus-10.2.0.5.0-linux-x64.zip && unzip sdk-10.2.0.5.0-linux-x64.zip && unzip jdbc-10.2.0.5.0-linux-x64.zip
+
+ENV LD_LIBRARY_PATH /instantclient_10_2
+
+RUN export PATH=/instantclient_10_2:$PATH
 
 # Adding (downloading) the archive
 # --------------------
@@ -56,8 +71,8 @@ RUN mkdir -p /migration/drivers && \
 # Add oracle jdbc driver
 # --------------------
 # ADD "$PROTOCOL"://"$USERNAME":"$PASSWORD"@"$HOSTNAME"/nexus/service/local/repositories/thirdparty/content/com/oracle/ojdbc7/12.1.0.1/ojdbc7-12.1.0.1.jar /migration/drivers/ojdbc7.jar
-ADD "$PROTOCOL"://"$USERNAME":"$PASSWORD"@"$HOSTNAME"/nexus/service/local/repositories/thirdparty/content/com/oracle/ojdbc14/10.2.0.5/ojdbc14-10.2.0.5.jar /migration/drivers/ojdbc14.jar
-
+#ADD "$PROTOCOL"://"$USERNAME":"$PASSWORD"@"$HOSTNAME"/nexus/service/local/repositories/thirdparty/content/com/oracle/ojdbc14/10.2.0.5/ojdbc14-10.2.0.5.jar /migration/drivers/ojdbc14.jar
+RUN cp /instantclient_10_2/ojdbc14.jar /migration/drivers/ojdbc14.jar
 
 # Add script that builds migration environment file and launches the binary
 ADD sql /migration/scripts
