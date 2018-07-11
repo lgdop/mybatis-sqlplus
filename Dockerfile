@@ -27,8 +27,27 @@ RUN yum -y install net-utils ldap-utils htop telnet nc \
     libxslt \
     java-1.6.0-openjdk \ 
     libaio1 \
-    rlwrap && \
+    rlwrap \
+    #this is to include ansible image in mybatis-sqlplus image
+    epel-release \
+    && yum -y update \
+    && yum -y install ansible openssh-clients python-pip \
+    && pip install --upgrade pip \
+    # For ansible json_query jinja filter
+    && pip install jmespath \
+    && pip install netaddr \
+    && mkdir /ansible \
     yum clean all
+
+
+ADD host /etc/ansible/hosts
+
+ENV ANSIBLE_HOST_KEY_CHECKING False
+ENV ANSIBLE_REMOTE_TEMP '/tmp/ansible'
+ENV ANSIBLE_FORCE_COLOR true
+WORKDIR /ansible
+
+RUN sed '/#pipelining = False/a pipelining = True' -i /etc/ansible/ansible.cfg && sed '/#special_context_filesystems=nfs,vboxsf,fuse,ramfs,9p/a special_context_filesystems=nfs' -i /etc/ansible/ansible.cfg
 
 #Adding the sqlplus dependencies
 
