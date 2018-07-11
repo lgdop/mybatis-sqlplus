@@ -40,8 +40,6 @@ RUN yum -y install net-utils ldap-utils htop telnet nc \
     yum clean all
 
 
-ADD host /etc/ansible/hosts
-
 ENV ANSIBLE_HOST_KEY_CHECKING False
 ENV ANSIBLE_REMOTE_TEMP '/tmp/ansible'
 ENV ANSIBLE_FORCE_COLOR true
