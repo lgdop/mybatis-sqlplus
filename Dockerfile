@@ -8,12 +8,12 @@ ENV JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.41.x86_64/jre
 
 # Making MyBatis version an argument (in case a snapshot version needs to be built)
 # --------------------
-ARG VERSION="3.3.2-SNAPSHOT"
+ARG VERSION="3.3.5-SNAPSHOT"
 ARG REPOSITORY="snapshots"
-ARG PROTOCOL="https"
-ARG USERNAME="##USE_ARGUMENTS##"
-ARG PASSWORD="##USE_ARGUMENTS##"
-ARG HOSTNAME="##USE_ARGUMENTS##"
+#ARG PROTOCOL="https"
+#ARG USERNAME="##USE_ARGUMENTS##"
+#ARG PASSWORD="##USE_ARGUMENTS##"
+#ARG HOSTNAME="##USE_ARGUMENTS##"
 
 RUN yum -y install net-utils ldap-utils htop telnet nc \
     git \
@@ -63,7 +63,7 @@ ENV SQLPATH /instantclient_10_2
 # Adding (downloading) the archive
 # --------------------
 # ADD https://github.com/mybatis/migrations/releases/download/mybatis-migrations-"$VERSION"/mybatis-migrations-"$VERSION".zip /tmp/mybatis-migrations-"$VERSION".zip
-ADD https://oss.sonatype.org/content/repositories/snapshots/org/mybatis/mybatis-migrations/3.3.2-SNAPSHOT/mybatis-migrations-3.3.2-20180118.183255-24-bundle.zip /tmp/mybatis-migrations-"$VERSION".zip
+ADD https://oss.sonatype.org/content/repositories/snapshots/org/mybatis/mybatis-migrations/3.3.5-SNAPSHOT/mybatis-migrations-3.3.5-20180617.045305-2-bundle.zip /tmp/mybatis-migrations-"$VERSION".zip
 
 
 # Will store the binaries in "opt" for optional software
