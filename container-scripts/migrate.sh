@@ -86,10 +86,10 @@ TRIES=0
 
 #- Create mybatis properties file
 #--------------------------------
-#echo "- Run Mybatis"
+echo "- Run Mybatis"
 
 #: ${MYBATIS_CMD:='up'}
 #echo "  MYBATIS_CMD: $MYBATIS_CMD"
 
-#cd "/migration"
-#/opt/mybatis-migrations/bin/migrate "$@"
+cd "/migration"
+/opt/mybatis-migrations/bin/migrate "$@"
