@@ -2,7 +2,7 @@
 #: ${DB_DRIVER:=oracle.jdbc.OracleDriver}
 #: ${DB_CONNECTION_URL:=jdbc:oracle:thin:@localhost:1521/locdb}
 
-env
+#env
 
 echo "DB_TYPE		    : $DB_TYPE"
 echo "DB_HOST	        : $DB_HOST"
