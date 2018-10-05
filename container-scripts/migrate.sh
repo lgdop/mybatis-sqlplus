@@ -51,7 +51,7 @@ ignore_warnings=true
 ORACLE_SID=$ORACLE_SID
 ARBORENV=$ARBORENV
 module_name=$MODULE_NAME
-
+LOGNAME=$LOGNAME
 CONF
 
 
