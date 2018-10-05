@@ -63,7 +63,7 @@ ENV SQLPATH /instantclient_10_2
 # Adding (downloading) the archive
 # --------------------
 # ADD https://github.com/mybatis/migrations/releases/download/mybatis-migrations-"$VERSION"/mybatis-migrations-"$VERSION".zip /tmp/mybatis-migrations-"$VERSION".zip
-ADD https://oss.sonatype.org/content/repositories/snapshots/org/mybatis/mybatis-migrations/3.3.5-SNAPSHOT/mybatis-migrations-3.3.5-20180617.045305-2-bundle.zip /tmp/mybatis-migrations-"$VERSION".zip
+ADD https://oss.sonatype.org/content/repositories/snapshots/org/mybatis/mybatis-migrations/3.3.5-SNAPSHOT/mybatis-migrations-3.3.5-20180914.101741-8-bundle.zip /tmp/mybatis-migrations-"$VERSION".zip
 
 
 # Will store the binaries in "opt" for optional software
