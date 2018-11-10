@@ -36,6 +36,7 @@ RUN yum -y install net-utils ldap-utils htop telnet nc \
     # For ansible json_query jinja filter
     && pip install jmespath \
     && pip install netaddr \
+    && pip install python-dotenv \
     && mkdir /ansible &&\
     yum clean all
 
