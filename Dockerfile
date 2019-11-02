@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM centos:7
 
 MAINTAINER Ilia Shakitko <ilia.shakitko@accenture.com>
 
@@ -15,6 +15,7 @@ ARG REPOSITORY="snapshots"
 #ARG PASSWORD="##USE_ARGUMENTS##"
 #ARG HOSTNAME="##USE_ARGUMENTS##"
 
+RUN yum update -y && yum -y install epel-release 
 RUN yum -y install net-utils ldap-utils htop telnet nc \
     git \
     wget \
@@ -30,7 +31,6 @@ RUN yum -y install net-utils ldap-utils htop telnet nc \
     rlwrap \
     #this is to include ansible image in mybatis-sqlplus image
     epel-release \
-    && yum -y update \
     && yum -y install ansible openssh-clients python-pip \
     && pip install --upgrade pip \
     # For ansible json_query jinja filter
@@ -104,4 +104,4 @@ WORKDIR /migration
 
 # Execute migrate.sh on "docker run"
 # --------------------
-ENTRYPOINT ["/opt/migrate.sh"]
+CMD ["/opt/migrate.sh"]
