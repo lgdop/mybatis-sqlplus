@@ -96,3 +96,5 @@ echo "- Run Mybatis"
 
 #cd "/migration"
 #/opt/mybatis-migrations/bin/migrate "$@"
+
+exec "$@"
