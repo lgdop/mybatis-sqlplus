@@ -90,7 +90,7 @@ RUN mkdir -p /migration/drivers && \
 # --------------------
 # ADD "$PROTOCOL"://"$USERNAME":"$PASSWORD"@"$HOSTNAME"/nexus/service/local/repositories/thirdparty/content/com/oracle/ojdbc7/12.1.0.1/ojdbc7-12.1.0.1.jar /migration/drivers/ojdbc7.jar
 #ADD "$PROTOCOL"://"$USERNAME":"$PASSWORD"@"$HOSTNAME"/nexus/service/local/repositories/thirdparty/content/com/oracle/ojdbc14/10.2.0.5/ojdbc14-10.2.0.5.jar /migration/drivers/ojdbc14.jar
-RUN cp /instantclient_10_2/ojdbc6.jar /migration/drivers/ojdbc6.jar
+RUN cp /instantclient_10_2/ojdbc14.jar /migration/drivers/ojdbc14.jar
 
 # Add script that builds migration environment file and launches the binary
 ADD sql /migration/scripts
